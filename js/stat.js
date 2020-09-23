@@ -37,7 +37,6 @@ window.renderStatistics = function(ctx, names, times) {
   ctx.textBaseline = "hanging";
 
   var maxTime = getMaxElement(times);
-
   var titles = ['Ура вы победили!', 'Список результатов: '];
 
   for (var i = 0; i < titles.length; i++) {
