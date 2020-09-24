@@ -12,7 +12,8 @@ const BAR_WIDTH = 40;
 
 const heightTitle = CLOUD_Y + GAP + FONT_GAP + GAP + FONT_GAP;
 const barHeight = CLOUD_HEIGHT - heightTitle - GAP - FONT_GAP;
-const coordinateX = CLOUD_X + GAP + GAP + (BAR_WIDTH + GAP * 2);
+const offset = (BAR_WIDTH + GAP * 2);
+const coordinateX = CLOUD_X + GAP + GAP;
 
 const renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
@@ -20,7 +21,7 @@ const renderCloud = function (ctx, x, y, color) {
 };
 
 const getMaxElement = function (arr) {
-  const maxElement = arr[0];
+  let maxElement = arr[0];
 
   for (let i = 1; i < arr.length; i++) {
     if (arr[i] > maxElement) {
@@ -58,12 +59,12 @@ window.renderStatistics = function (ctx, names, times) {
 
     ctx.fillText(
         Math.ceil(times[i]),
-        coordinateX * i,
+        coordinateX + offset * i,
         CLOUD_HEIGHT - GAP - FONT_GAP - GAP - (barHeight * times[i]) / maxTime
     );
 
     ctx.fillRect(
-        coordinateX * i,
+        coordinateX + offset * i,
         CLOUD_HEIGHT - GAP - FONT_GAP - ((barHeight * times[i]) / maxTime),
         BAR_WIDTH,
         (barHeight * times[i]) / maxTime
@@ -73,7 +74,7 @@ window.renderStatistics = function (ctx, names, times) {
 
     ctx.fillText(
         names[i],
-        coordinateX * i,
+        coordinateX + offset * i,
         CLOUD_HEIGHT - GAP
     );
   }
