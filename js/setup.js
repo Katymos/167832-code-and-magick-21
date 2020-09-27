@@ -96,7 +96,7 @@ const fillWizard = function (fragmentItem) {
   }
 
   return fragmentItem;
-}
+};
 
 similarList.appendChild(fillWizard(fragment));
 
