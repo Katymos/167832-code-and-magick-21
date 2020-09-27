@@ -2,7 +2,7 @@
 
 const userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
-const similarList = document.querySelector('.setup-similar-list');
+const similarList = userDialog.querySelector('.setup-similar-list');
 const similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
 
 const names = [
@@ -45,36 +45,31 @@ const eyesColor = [
 ];
 
 const getRndInteger = function (arr) {
-  let index = Math.ceil(Math.random() * arr.length - 1);
+  const index = Math.ceil(Math.random() * arr.length - 1);
 
   return arr[index];
 };
 
-let getPropertyValue = function (arr) {
-
-  return getRndInteger(arr);
-};
-
 const wizards = [
   {
-    name: `${getPropertyValue(names)} ${getPropertyValue(secondNames)}`,
-    coatColor: getPropertyValue(coatColors),
-    eyesColor: getPropertyValue(eyesColor)
+    name: `${getRndInteger(names)} ${getRndInteger(secondNames)}`,
+    coatColor: getRndInteger(coatColors),
+    eyesColor: getRndInteger(eyesColor)
   },
   {
-    name: `${getPropertyValue(names)} ${getPropertyValue(secondNames)}`,
-    coatColor: getPropertyValue(coatColors),
-    eyesColor: getPropertyValue(eyesColor)
+    name: `${getRndInteger(names)} ${getRndInteger(secondNames)}`,
+    coatColor: getRndInteger(coatColors),
+    eyesColor: getRndInteger(eyesColor)
   },
   {
-    name: `${getPropertyValue(names)} ${getPropertyValue(secondNames)}`,
-    coatColor: getPropertyValue(coatColors),
-    eyesColor: getPropertyValue(eyesColor)
+    name: `${getRndInteger(names)} ${getRndInteger(secondNames)}`,
+    coatColor: getRndInteger(coatColors),
+    eyesColor: getRndInteger(eyesColor)
   },
   {
-    name: `${getPropertyValue(names)} ${getPropertyValue(secondNames)}`,
-    coatColor: getPropertyValue(coatColors),
-    eyesColor: getPropertyValue(eyesColor)
+    name: `${getRndInteger(names)} ${getRndInteger(secondNames)}`,
+    coatColor: getRndInteger(coatColors),
+    eyesColor: getRndInteger(eyesColor)
   }
 ];
 
@@ -88,16 +83,16 @@ const renderWizard = function (wizard) {
   return wizardElement;
 };
 
-const fragment = document.createDocumentFragment();
+const fillWizard = function () {
+  const fragment = document.createDocumentFragment();
 
-const fillWizard = function (fragmentItem) {
   for (let i = 0; i < wizards.length; i++) {
-    fragmentItem.appendChild(renderWizard(wizards[i]));
+    fragment.appendChild(renderWizard(wizards[i]));
   }
 
-  return fragmentItem;
+  similarList.appendChild(fragment);
 };
 
-similarList.appendChild(fillWizard(fragment));
+fillWizard();
 
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
