@@ -33,7 +33,7 @@ const coatColors = [
   'rgb(146, 100, 161)',
   'rgb(56, 159, 117)',
   'rgb(215, 210, 55)',
-  'rgb(0, 0, 0'
+  'rgb(0, 0, 0)'
 ];
 
 const eyesColor = [
@@ -44,16 +44,15 @@ const eyesColor = [
   'green'
 ];
 
-let getRndInteger = function (arr) {
+const getRndInteger = function (arr) {
   let index = Math.ceil(Math.random() * arr.length - 1);
 
   return arr[index];
 };
 
 let getPropertyValue = function (arr) {
-  arr = getRndInteger(arr);
 
-  return arr;
+  return getRndInteger(arr);
 };
 
 const wizards = [
@@ -79,8 +78,8 @@ const wizards = [
   }
 ];
 
-let renderWizard = function (wizard) {
-  let wizardElement = similarWizardTemplate.cloneNode(true);
+const renderWizard = function (wizard) {
+  const wizardElement = similarWizardTemplate.cloneNode(true);
 
   wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
   wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
@@ -89,11 +88,16 @@ let renderWizard = function (wizard) {
   return wizardElement;
 };
 
-let fragment = document.createDocumentFragment();
-for (let i = 0; i < wizards.length; i++) {
-  fragment.appendChild(renderWizard(wizards[i]));
+const fragment = document.createDocumentFragment();
+
+const fillWizard = function (fragmentItem) {
+  for (let i = 0; i < wizards.length; i++) {
+    fragmentItem.appendChild(renderWizard(wizards[i]));
+  }
+
+  return fragmentItem;
 }
 
-similarList.appendChild(fragment);
+similarList.appendChild(fillWizard(fragment));
 
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
